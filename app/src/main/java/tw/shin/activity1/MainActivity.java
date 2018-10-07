@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    private long lastBackTime = 0;
     public MainActivity() {
         Log.d("brad","MainActivity()");
     }
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     public void switchPage(View view) {
         Intent intent = new Intent(this,Page2Activity.class);
         startActivity(intent);
+        super.finish();
 
     }
 
@@ -65,4 +68,26 @@ public class MainActivity extends AppCompatActivity {
         Log.d("brad","onRestart");
     }
 
+    public void die(View view) {
+       finish();
+    }
+    //onBack備案
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.d("brad","onBackPressed()");
+    }
+
+    @Override
+    public void finish() {
+       // super.finish();
+        long nowTime = System.currentTimeMillis();
+        if(nowTime-lastBackTime <= 3*1000) {
+            super.finish();
+        }
+        else{
+            Toast.makeText(this,"再按一次就BYE",Toast.LENGTH_SHORT).show();
+            lastBackTime = nowTime;
+        }
+    }
 }

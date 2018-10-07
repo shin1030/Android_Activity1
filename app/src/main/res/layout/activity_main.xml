@@ -13,6 +13,11 @@
         android:layout_height="wrap_content"
         android:text="t1"
         android:onClick="switchPage"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DIE"
+        android:onClick="die"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
